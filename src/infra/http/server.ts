@@ -16,6 +16,16 @@ import {
 // Routes
 import { healthCheckRoute } from "./routes/health/health-check";
 import { authenticationCheckRoute } from "./routes/health/private-health-check";
+import { createItemRoute } from "./routes/links/create-item";
+import { createOrderRoute } from "./routes/links/create-order";
+import { deleteItemRoute } from "./routes/links/delete-item";
+import { deleteOrderRoute } from "./routes/links/delete-order";
+import { getAllItemsRoute } from "./routes/links/get-all-items";
+import { getAllOrdersRoute } from "./routes/links/get-all-orders";
+import { getItemByIdRoute } from "./routes/links/get-item-by-id";
+import { getOrderByIdRoute } from "./routes/links/get-order-by-id";
+import { updateItemRoute } from "./routes/links/update-item";
+import { updateOrderRoute } from "./routes/links/update-order";
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -57,6 +67,20 @@ app.register(scalarUI, {
 // Health
 app.register(healthCheckRoute)
 app.register(authenticationCheckRoute)
+
+// Order
+app.register(createOrderRoute)
+app.register(getAllOrdersRoute)
+app.register(getOrderByIdRoute)
+app.register(deleteOrderRoute)
+app.register(updateOrderRoute)
+
+// Item
+app.register(createItemRoute)
+app.register(getAllItemsRoute)
+app.register(getItemByIdRoute)
+app.register(deleteItemRoute)
+app.register(updateItemRoute)
 
 const listeners = ['SIGINT', 'SIGTERM']
 listeners.forEach(signal => {
